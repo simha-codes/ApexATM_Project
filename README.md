@@ -1,104 +1,79 @@
 # ApexATM - Java ATM Simulator
 
-This is a small ATM simulation I built in Java using Swing for the GUI. It's part of my "Build Your Own Project" submission, and the goal was pretty simple: recreate the core experience of using an ATM, but as a desktop app, while actually applying OOP concepts instead of just writing everything in one file.
+ApexATM is a desktop ATM simulation developed in Java using Swing. The project demonstrates object-oriented programming concepts through a simple ATM workflow with login, account operations, validation, and transaction history.
 
-## What it actually does
- 
-You log in with a user ID and a 4-digit PIN, and from there you land on a dashboard where you can:
+This project was developed as part of the **VITyarthi - Build Your Own Project** submission.
 
-- Check your balance
-- Withdraw cash (including a few quick-cash buttons for common amounts)
-- Deposit money
-- Transfer funds to another user
-- Change your PIN
-- Look back at your past transactions
+## Overview
 
-Nothing fancy in terms of banking logic, but I made sure the validation is solid - no negative amounts, no withdrawing more than you have, no garbage input sneaking through.
+The application simulates the basic experience of using an ATM through a graphical user interface (GUI).
 
-## Why I built it this way
+After logging in with a User ID and 4-digit PIN, the user can access the ATM dashboard and perform common account operations.
 
-I wanted the code to actually look like it was designed, not just thrown together, so I split things into three layers:
+## Features
 
-- **model** - `User` and `Transaction`, basically the data
-- **service** - `AuthService` handles login, `AccountService` handles deposits/withdrawals/balance updates
-- **ui** - the Swing panels (`LoginPanel` and `DashboardPanel`) that the user actually sees
+- User login with User ID and 4-digit PIN
+- Balance enquiry
+- Cash withdrawal
+- Quick cash withdrawal
+- Cash deposit
+- Fund transfer to another user
+- PIN change
+- Transaction history
+- Input validation
+- Prevention of negative transaction amounts
+- Prevention of withdrawals greater than the available balance
+- GUI-based interaction using Java Swing
 
-Keeping the UI separate from the logic meant I could tweak how things looked without touching the banking rules, and vice versa. It also just made debugging way less painful.
+## Functional Modules
 
-For the interface itself I went for a darker, glassy card-style look instead of the usual boring gray Swing buttons - used custom `Graphics2D` drawing for rounded corners and that translucent panel effect.
+1. **Authentication Module** - validates the User ID and PIN.
+2. **Account Management Module** - handles balance enquiry, deposits, withdrawals, and transfers.
+3. **Transaction Module** - records transaction details and displays transaction history.
+4. **User Interface Module** - provides the login screen and ATM dashboard.
 
-## Setting it up and running it
+## Technologies and Tools
 
-There's no database, no build tool, and no external libraries to install here - it's plain Java with the built-in Swing library, so setup is mostly just making sure Java itself is ready on your machine.
+- **Language:** Java
+- **GUI:** Java Swing
+- **JDK:** JDK 8 or later
+- **Version Control:** Git / GitHub
+- **IDE (optional):** VS Code, IntelliJ IDEA, or Eclipse
+- **External Libraries:** None
+- **Database:** None
+- **Build Tool:** None
 
-### 1. Install the JDK
+## Prerequisites
 
-You need a Java Development Kit, version 8 or newer (I built and tested this on JDK 17, but anything from 8 up should compile fine since nothing here uses very recent language features).
+Before running the project, install:
 
-- **Windows/Mac** - download from [Oracle's JDK page](https://www.oracle.com/java/technologies/downloads/) or grab [Eclipse Temurin](https://adoptium.net/) if you'd rather use an open-source build.
-- **Linux** - easiest is through your package manager, e.g. `sudo apt install openjdk-17-jdk` on Ubuntu/Debian.
+- Java Development Kit (JDK) 8 or later
+- Git, if cloning the repository from GitHub
+- A terminal/command prompt
 
-Once it's installed, confirm it worked by running:
+The project was tested during development with JDK 17.
 
-```
+Verify Java installation:
+
+```bash
 java -version
 javac -version
 ```
 
-Both commands should print a version number. If they don't, Java either isn't installed or isn't on your system PATH - you may need to restart your terminal or add the JDK's `bin` folder to PATH manually.
+Both commands should display the installed Java version.
 
-### 2. Get the project files
+## Installation and Setup
 
-Unzip `ApexATM_Project-main.zip` (or clone the repo, if you got it from a Git remote) wherever you'd like it. You should end up with a folder that looks like the layout further down in this README, with `src/atm/` inside it.
+### 1. Clone the Repository
 
-### 3. Dependencies
-
-There aren't any. No Maven, no Gradle, no `pom.xml` or `build.gradle`, nothing to download. Java Swing and the standard library cover everything the app needs. This step exists mostly to say: you can skip it.
-
-### 4. Configuration
-
-Nothing needs to be configured either - no config files, no environment variables, no API keys. The two demo accounts (see the table below) are hardcoded directly in `AuthService.java`, so the app works right out of the box. If you want to change the starting balances or add more test users, that's the file to open.
-
-### 5. Compile and run
-
-**Option A - command line**
-
-Open a terminal in the project's root folder, then:
-
-```
-cd src
-javac atm/Main.java atm/model/*.java atm/service/*.java atm/ui/*.java
-java atm.Main
+```bash
+git clone https://github.com/simha-codes/ApexATM_Project.git
+cd ApexATM_Project
 ```
 
-The first command compiles everything, the second launches the app. A window titled "Automated Teller Machine" should pop up with the login screen.
+### 2. Check the Project Structure
 
-**Option B - VS Code**
-
-If you're using VS Code with the Java Extension Pack installed, just open the project folder - the `.vscode/launch.json` file is already set up, so you can hit the Run button (or press F5) and it'll compile and launch automatically.
-
-**Option C - IntelliJ IDEA / Eclipse**
-
-Import it as a plain Java project (not Maven/Gradle), point the source root at `src`, and run `Main.java` directly - both IDEs will detect the `main` method and give you a Run option next to it.
-
-### 6. Log in and try it out
-
-There are two test accounts built in so you don't have to set anything up yourself:
-
-| User ID | PIN  | Starting Balance |
-|---------|------|-------------------|
-| user123 | 1234 | $1500.00 |
-| admin   | 9999 | $5000.00 |
-
-## A few things worth knowing
-
-- All the data lives in memory only - close the app and it resets. There's no database or file storage hooked up, which was intentional since this was meant to be a self-contained simulation, not a production system.
-- Amounts are stored as `double`, which is fine for a class project but I know it's not what you'd actually use for real money in production (floating point rounding issues and all that).
-- The transaction history keeps track of type, amount, and the balance right after each transaction, along with a timestamp, so you can see exactly what happened and when.
-
-## Project layout
-
-```
+```text
 ApexATM_Project/
 ├── .vscode/
 │   └── launch.json
@@ -118,6 +93,150 @@ ApexATM_Project/
 └── README.md
 ```
 
-## Possible next steps
+## Execution Commands
 
-If I keep working on this at some point, the things I'd add first are persistent storage (so balances survive a restart), support for registering new users instead of hardcoding two accounts, and maybe basic unit tests around the deposit/withdraw logic since right now it's only been tested manually by clicking through the app.
+The project can be compiled and executed directly from the terminal without an IDE.
+
+### 1. Create the output directory
+
+From the project root:
+
+```bash
+mkdir bin
+```
+
+### 2. Compile
+
+```bash
+javac -d bin src/atm/model/*.java src/atm/service/*.java src/atm/ui/*.java src/atm/Main.java
+```
+
+### 3. Run
+
+```bash
+java -cp bin atm.Main
+```
+
+The ATM GUI should open after the run command.
+
+## Test Accounts
+
+| User ID | PIN | Starting Balance |
+|---|---:|---:|
+| `user123` | `1234` | `$1500.00` |
+| `admin` | `9999` | `$5000.00` |
+
+## Testing Instructions
+
+Testing can be performed manually through the GUI after compiling and running the application.
+
+### Authentication Tests
+
+- Use a valid User ID and PIN and verify that the dashboard opens.
+- Use an incorrect PIN and verify that login is rejected.
+- Use an invalid User ID and verify that login is rejected.
+
+### Account Operation Tests
+
+- Check the current balance.
+- Deposit a valid amount and verify the balance update.
+- Withdraw a valid amount and verify the balance update.
+- Try to withdraw more than the available balance.
+- Try to enter a negative amount.
+- Transfer a valid amount to another available user.
+- Change the PIN and verify the new PIN during login.
+
+### Transaction Tests
+
+- Perform a deposit, withdrawal, or transfer.
+- Open transaction history.
+- Verify the transaction type, amount, resulting balance, and timestamp.
+
+> **Testing status:** Manual test cases are provided above. Individual test results should be verified during project demonstration before being marked as passed.
+
+## Running with an IDE
+
+### VS Code
+
+1. Install the Java Extension Pack.
+2. Open the project folder.
+3. Open `src/atm/Main.java`.
+4. Run the `main` method or press **F5**.
+
+The repository contains `.vscode/launch.json` for the project.
+
+### IntelliJ IDEA / Eclipse
+
+Import the project as a plain Java project, use `src` as the source folder, and run `Main.java`.
+
+## Architecture
+
+The project uses a simple layered package structure:
+
+### Model Layer
+
+- `User.java` - stores user/account information and transaction history.
+- `Transaction.java` - represents transaction records.
+
+### Service Layer
+
+- `AuthService.java` - handles authentication and user management.
+- `AccountService.java` - handles deposits, withdrawals, transfers, and balance updates.
+
+### UI Layer
+
+- `LoginPanel.java` - login interface.
+- `DashboardPanel.java` - main ATM interface.
+
+### Main Application
+
+- `Main.java` - starts the application and controls the main UI flow.
+
+This separation keeps UI code, application logic, and data classes organized into different packages.
+
+## Data Storage
+
+ApexATM does not use a database or file-based storage. User and transaction information is maintained in memory while the application is running.
+
+When the application is closed, the data resets to the initial demo-account state.
+
+## Design Decisions
+
+- **Java Swing:** used to create the desktop GUI using Java's standard libraries.
+- **Layered package structure:** separates model, service, and UI responsibilities.
+- **In-memory storage:** keeps the educational simulation simple and self-contained.
+- **Input validation:** prevents invalid account operations.
+- **Git/GitHub:** used for version control and project submission.
+
+## Limitations
+
+- Data is not persistent and is lost when the application closes.
+- Demo users are predefined in the application.
+- The project is an educational ATM simulation and is not intended for real banking use.
+- Money values use `double`, which is acceptable for this academic project but is not recommended for production financial systems.
+
+## Future Enhancements
+
+- Database-based persistent storage
+- User registration
+- Secure PIN storage
+- Unit tests for account operations
+- Improved account and transaction management
+- Additional ATM services
+
+## Repository Contents
+
+The repository includes:
+
+- `README.md` - project overview, features, setup, execution, and testing instructions.
+- `statement.md` - problem statement, scope, target users, and high-level features.
+- `src/` - organized Java source code.
+- `.vscode/` - optional VS Code launch configuration.
+
+## Project Repository
+
+**GitHub:** `simha-codes/ApexATM_Project`
+
+## License
+
+This project is created for educational purposes as part of the VITyarthi - Build Your Own Project submission.
