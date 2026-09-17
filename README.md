@@ -237,6 +237,3 @@ The repository includes:
 
 **GitHub:** `simha-codes/ApexATM_Project`
 
-## License
-
-This project is created for educational purposes as part of the VITyarthi - Build Your Own Project submission.
