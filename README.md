@@ -3,7 +3,7 @@
 This is a small ATM simulation I built in Java using Swing for the GUI. It's part of my "Build Your Own Project" submission, and the goal was pretty simple: recreate the core experience of using an ATM, but as a desktop app, while actually applying OOP concepts instead of just writing everything in one file.
 
 ## What it actually does
-
+ 
 You log in with a user ID and a 4-digit PIN, and from there you land on a dashboard where you can:
 
 - Check your balance
