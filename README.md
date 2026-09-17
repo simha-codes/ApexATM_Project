@@ -152,7 +152,7 @@ Testing can be performed manually through the GUI after compiling and running th
 - Open transaction history.
 - Verify the transaction type, amount, resulting balance, and timestamp.
 
-> **Testing status:** Manual test cases are provided above. Individual test results should be verified during project demonstration before being marked as passed.
+> **Testing status:** Manual test cases are provided above. 
 
 ## Running with an IDE
 
