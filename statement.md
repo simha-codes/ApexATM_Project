@@ -1,19 +1,26 @@
 # Problem Statement: Automated Teller Machine (ATM) Simulation System
 
 ## 1. Problem Statement
-Physical and software-driven banking kiosks require robust transaction integrity, reliable data flow, and intuitive visual interfaces to prevent manual handling errors and unauthorized operations. This system provides a simulated software ATM client built using modular Object-Oriented Design (OOD) in Java, ensuring decoupled business logic and secure state execution.
+An ATM allows users to perform basic banking tasks without visiting a bank. This project is a simple ATM simulation made in Java. It allows users to log in using a user ID and PIN, check their balance, deposit money, withdraw money, transfer money, change their PIN, and view their transaction history. The project focuses on making these operations easy to use while also handling basic input validation.
 
 ## 2. Scope of the Project
-- Authenticate registered bank account holders via PIN credentials.
-- Execute basic core transactions (balance check, deposit, debit/withdrawal).
-- Maintain an immutable, in-memory session audit trail per user.
-- Enforce strict input validation, zero-overdraft prevention, and session termination.
+- Allow users to log in using their user ID and PIN.
+- Check account balance.
+- Deposit and withdraw money.
+- Transfer money between accounts.
+- Change the PIN.
+- View transaction history.
+- Validate user input and prevent invalid transactions.
 
 ## 3. Target Users
-- Retail banking customers seeking self-service transactions.
-- Academic evaluators analyzing Java Swing desktop UI, Separation of Concerns (SoC), and Object-Oriented design patterns.
+- People who want to understand how a basic ATM system works.
+- Students learning Java, Object-Oriented Programming, and GUI development.
 
 ## 4. High-Level Features
-- **Security & Session Gatekeeper:** Card/ID authentication with PIN validation.
-- **Transactional Consistency:** State validation preventing negative values and overdraft conditions.
-- **Dynamic Ledger Logging:** Real-time chronological transaction history recording.
+- User login with PIN authentication.
+- Balance checking.
+- Cash withdrawal and quick cash.
+- Money deposit and transfer.
+- PIN change.
+- Transaction history.
+- Simple Java Swing graphical user interface.
